@@ -1,6 +1,6 @@
 require "./spec_helper"
 
-describe Consumer do
+describe Provider do
   # TODO: Write tests
 
   it "works" do

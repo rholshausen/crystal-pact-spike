@@ -1,6 +1,5 @@
-/docs/
-/lib/
+lib/
 bin/
-/.shards/
+.shards/
 *.dwarf
 .idea/
