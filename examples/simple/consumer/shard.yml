@@ -1,0 +1,13 @@
+name: consumer
+version: 0.1.0
+
+authors:
+  - Ronald Holshausen <ronald.holshausen@gmail.com>
+
+targets:
+  consumer:
+    main: src/consumer.cr
+
+crystal: '>= 1.13.2'
+
+license: MIT
