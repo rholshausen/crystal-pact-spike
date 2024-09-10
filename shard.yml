@@ -1,0 +1,9 @@
+name: pact-crystal
+version: 0.1.0
+
+authors:
+  - Ronald Holshausen <ronald.holshausen@smartbear.com>
+
+crystal: '>= 1.13.2'
+
+license: MIT
