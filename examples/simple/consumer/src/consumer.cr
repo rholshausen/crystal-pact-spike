@@ -1,16 +1,62 @@
 require "option_parser"
+require "http/client"
+require "json"
 
 module Consumer
   extend self
 
   VERSION = "0.1.0"
 
+  class Task
+    include JSON::Serializable
+
+    @id : UInt32
+    @done : Bool = false
+    @name : String
+
+    def initialize(id : UInt32, name : String)
+      @id = id
+      @name = name
+    end
+  end
+
+  class Todo
+    include JSON::Serializable
+
+    @id : UInt32
+    @name : String
+    @type : String = "activity"
+    @due : Time?
+    @tasks : Array(Task) = [] of Task
+
+    def initialize(id : UInt32, name : String)
+      @id = id
+      @name = name
+    end
+  end
+
+  class Project
+    include JSON::Serializable
+
+    @todos = [] of Todo
+
+    def initialize
+    end
+  end
+
   enum Command
     List
   end
 
   def list
-
+    response = HTTP::Client.get "http://localhost:3000"
+    if response.success?
+      project = Project.from_json(response.body)
+      pp project
+    else
+      STDERR.puts "ERROR: Failed to connect to provider - #{response}"
+      exit(2)
+    end
   end
 end
 
