@@ -1,5 +1,10 @@
 version: 2.0
 shards:
+  pact-crystal:
+    git: https://github.com/rholshausen/crystal-pact-spike.git
+    version: 0.0.0+git.commit.5ef1476801098cbebee50492883c7ea0b53fe92b
+
   webmock:
     git: https://github.com/manastech/webmock.cr.git
     version: 0.14.0+git.commit.42b347cdd64e13193e46167a03593944ae2b3d20
+

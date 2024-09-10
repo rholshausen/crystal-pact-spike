@@ -1,5 +1,6 @@
 require "./spec_helper"
 require "webmock"
+require "pact-crystal"
 
 describe Consumer do
   describe "list command" do
@@ -16,6 +17,10 @@ describe Consumer do
   end
 
   describe "list command pact test" do
+    before_all do
+      Pact::Crystal.init
+    end
+
     before_each do
       WebMock.allow_net_connect = true
     end
