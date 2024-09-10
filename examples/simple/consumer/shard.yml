@@ -6,8 +6,13 @@ authors:
 
 targets:
   consumer:
-    main: src/consumer.cr
+    main: src/main.cr
 
 crystal: '>= 1.13.2'
 
 license: MIT
+
+development_dependencies:
+  webmock:
+    github: manastech/webmock.cr
+    branch: master

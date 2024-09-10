@@ -1,9 +1,15 @@
 require "./spec_helper"
+require "webmock"
 
 describe Consumer do
-  # TODO: Write tests
+  describe "list command" do
+    it "displays a list of todos from the provider" do
+      project = Consumer::Project.new
 
-  it "works" do
-    false.should_not eq(true)
+      WebMock.stub(:get, "http://localhost:3000/").
+        to_return(body: project.to_json, headers: {"Content-Type" => "application/json"})
+
+      Consumer.list
+    end
   end
 end
