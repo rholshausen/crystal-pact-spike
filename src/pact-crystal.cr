@@ -7,10 +7,13 @@ module Pact::Crystal
   VERSION = {{ `shards version "#{__DIR__}"`.chomp.stringify.downcase }}
 
   def init
-    version = String.new(LibPactFfi.pactffi_version)
-    Log.info { "Pact Crystal version: #{VERSION}" }
-    Log.info { "--> Pact FFI version: #{version}" }
+    log = Log.for(Pact::Crystal)
 
-    LibPactFfi.pactffi_init("LOG_LEVEL")
+    version = String.new(LibPactFfi.pactffi_version)
+    log.debug { "Pact Crystal version: #{VERSION}" }
+    log.debug { "--> Pact FFI version: #{version}" }
+
+    LibPactFfi.pactffi_init_with_log_level(log.level.to_s.upcase)
+    LibPactFfi.pactffi_log_message("pact.crystal", "DEBUG", "Logging initialised")
   end
 end

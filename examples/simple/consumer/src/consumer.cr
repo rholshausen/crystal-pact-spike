@@ -86,14 +86,14 @@ module Consumer
 
     case command
       when Command::List
-        list()
+        list("http://localhost:3000")
       else
         puts parser
     end
   end
 
-  def list
-    response = HTTP::Client.get "http://localhost:3000"
+  def list(url)
+    response = HTTP::Client.get(url, headers: HTTP::Headers{"Accept" => "application/json"})
     if response.success?
       project = Project.from_json(response.body)
       pp project
